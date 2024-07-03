@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Staff List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        a {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+        a:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        td a {
+            color: #0066cc;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        td a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<h1>Staff List</h1>
+<a th:href="@{/staff/create}">Create New Staff</a>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Salary</th>
+        <th>Department</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="staff : ${staffList}">
+        <td th:text="${staff.id}"></td>
+        <td th:text="${staff.name}"></td>
+        <td th:text="${staff.role}"></td>
+        <td th:text="${staff.email}"></td>
+        <td th:text="${staff.phone}"></td>
+        <td th:text="${staff.address}"></td>
+        <td th:text="${staff.salary}"></td>
+        <td th:text="${staff.department}"></td>
+        <td th:text="${staff.status}"></td>
+        <td>
+            <a th:href="@{/staff/edit/{id}(id=${staff.id})}">Edit</a>
+            <a th:href="@{/staff/delete/{id}(id=${staff.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
